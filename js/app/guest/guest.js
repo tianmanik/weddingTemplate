@@ -312,11 +312,17 @@ export const guest = (() => {
         window.AOS.init();
         document.body.scrollIntoView({ behavior: 'instant' });
 
-        // wait until welcome screen is show.
+        console.log('Menampilkan welcome...');
         await util.changeOpacity(document.getElementById('welcome'), true);
+        console.log('Welcome tampil, loading dihilangkan...');
+        await util.changeOpacity(document.getElementById('loading'), false).then((el) => el.remove());
+        console.log('Loading dihapus.');
+
+        // wait until welcome screen is show.
+        // await util.changeOpacity(document.getElementById('welcome'), true);
 
         // remove loading screen and show welcome screen.
-        await util.changeOpacity(document.getElementById('loading'), false).then((el) => el.remove());
+        // await util.changeOpacity(document.getElementById('loading'), false).then((el) => el.remove());
     };
 
     /**

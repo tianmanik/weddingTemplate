@@ -64,15 +64,36 @@ export const util = (() => {
      * @param {number} step
      * @returns {Promise<HTMLElement>}
      */
+    // const changeOpacity = (el, isUp, step = 0.05) => new Promise((res) => {
+    //     let op = parseFloat(el.style.opacity);
+    //     const target = isUp ? 1 : 0;
+
+    //     const animate = () => {
+    //         op += isUp ? step : -step;
+    //         op = Math.max(0, Math.min(1, op));
+    //         el.style.opacity = op.toFixed(2);
+
+    //         if ((isUp && op >= target) || (!isUp && op <= target)) {
+    //             el.style.opacity = target.toString();
+    //             res(el);
+    //         } else {
+    //             requestAnimationFrame(animate);
+    //         }
+    //     };
+
+    //     requestAnimationFrame(animate);
+    // });
+
     const changeOpacity = (el, isUp, step = 0.05) => new Promise((res) => {
         let op = parseFloat(el.style.opacity);
+        if (isNaN(op)) op = isUp ? 0 : 1;
         const target = isUp ? 1 : 0;
-
+    
         const animate = () => {
             op += isUp ? step : -step;
             op = Math.max(0, Math.min(1, op));
             el.style.opacity = op.toFixed(2);
-
+    
             if ((isUp && op >= target) || (!isUp && op <= target)) {
                 el.style.opacity = target.toString();
                 res(el);
@@ -80,9 +101,10 @@ export const util = (() => {
                 requestAnimationFrame(animate);
             }
         };
-
+    
         requestAnimationFrame(animate);
     });
+    
 
     /**
      * @param {function} callback
