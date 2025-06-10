@@ -97,3 +97,39 @@ html[data-bs-theme="dark"] .bg-white-black {
 .no-gap-bottom {
     margin-bottom: -0.75rem !important;
 }
+
+
+.loading-page {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1056;
+    overflow: hidden;
+}
+
+.loading-page .bg-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4); /* Ganti opacity sesuai selera */
+    z-index: 1;
+    border-radius: inherit;
+    /* backdrop-filter: blur(2px);  <-- Boleh tambahkan jika ingin ada efek blur */
+}
+
+.loading-page > *:not(.bg-overlay) {
+    position: relative;
+    z-index: 2;
+}
+
+/* Tambahkan agar text selalu putih saat di loading page */
+.loading-page .font-esthetic,
+.loading-page #guest-name {
+    color: #fff !important;
+}
+
+/* Untuk memastikan button tetap di atas overlay */
+.loading-page button {
+    position: relative;
+    z-index: 3;
+}
