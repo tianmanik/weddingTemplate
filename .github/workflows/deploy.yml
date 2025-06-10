@@ -1,13 +1,10 @@
-name: Deploy to GitHub Pages
-
-on:
-  push:
-    branches:
-      - 3.x    # ganti dengan nama branch utama kamu jika berbeda
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write      # <--- ini WAJIB
+      pages: write         # <--- ini WAJIB
+      contents: read       # <--- biasanya default, tapi sebaiknya tetap dicantumkan
 
     steps:
       - name: Checkout code
@@ -19,7 +16,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "."   # karena index.html ada di root
+          path: "."
 
       - name: Deploy to GitHub Pages
         id: deployment
