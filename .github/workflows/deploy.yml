@@ -1,10 +1,17 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - 3.x     # Ganti sesuai branch utama kamu
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     permissions:
-      id-token: write      # <--- ini WAJIB
-      pages: write         # <--- ini WAJIB
-      contents: read       # <--- biasanya default, tapi sebaiknya tetap dicantumkan
+      id-token: write
+      pages: write
+      contents: read
 
     steps:
       - name: Checkout code
